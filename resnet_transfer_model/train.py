@@ -16,8 +16,8 @@ class_number = 37
 epochs = 15
 learning_rate = 1e-3
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-bbox_dir = "C:/Users/saidy/Desktop/Christina_Saidy_Assignment_5+6/oxford-iiit-pet/annotations/xmls"
-imag_dir = "C:/Users/saidy/Desktop/Christina_Saidy_Assignment_5+6/oxford-iiit-pet/images"
+bbox_dir = "C:/Users/saidy/Desktop/Christina_Saidy_Assigment_5/Christina_Saidy_Assignment_5+6/oxford-iiit-pet/annotations/xmls"
+imag_dir = "C:/Users/saidy/Desktop/Christina_Saidy_Assigment_5/Christina_Saidy_Assignment_5+6/oxford-iiit-pet/images"
 
 transform = transforms.Compose([
     transforms.Resize((224, 224)),
@@ -89,9 +89,9 @@ for epoch in range(epochs):
     total_val = 0
     with torch.no_grad():
         for images, labels, bboxes in val_loader:
-            images = images.to(device)
-            labels = labels.to(device)
-            bboxes = bboxes.to(device)
+            images = batch['image'].to(device) 
+            labels = batch['category'].to(device)
+            bboxes = batch['bbox'].to(device)
 
             outputs_label, outputs_bbox = model(images)
 
