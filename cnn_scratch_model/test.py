@@ -10,10 +10,10 @@ import numpy as np
 import os
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
-bbox_dir = "C:/Users/saidy/Desktop/Christina_Saidy_Assignment_5+6/oxford-iiit-pet/annotations/xmls"
 class_number = 37
 best_model_path = "CNN_SAVED/best_model.pth"
-imag_dir = "C:/Users/saidy/Desktop/Christina_Saidy_Assignment_5+6/oxford-iiit-pet/images"
+bbox_dir = "C:/Users/saidy/Desktop/Christina_Saidy_Assigment_5/Christina_Saidy_Assignment_5+6/oxford-iiit-pet/annotations/xmls"
+imag_dir = "C:/Users/saidy/Desktop/Christina_Saidy_Assigment_5/Christina_Saidy_Assignment_5+6/oxford-iiit-pet/images"
 
 model = CNN_model(class_number=class_number).to(device)
 model.load_state_dict(torch.load(best_model_path, map_location=device))
@@ -46,8 +46,9 @@ def plot_predictions(dataloader, model, n=5):
             pred_class = torch.argmax(pred_class, dim=1).item()  ######## dim =1 same as axis =1 in numpy
             pred_bbox = pred_bbox[0].cpu().tolist()
 
-        image = image_tensor[0].cpu().permute(1, 2, 0).numpy() 
-        image = (image * 255).astype(np.uint8)
+        image = image_tensor[0].cpu().permute(1, 2, 0).numpy()##  gives err without permute changes shape to cv2 friendly 
+        print("image", image) 
+        image = (image * 255).astype(np.uint8)  ##### change normalized image and convert it to int cause floats arent cv2 friendly
         image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
 
         h, w = image.shape[:2]
@@ -57,7 +58,7 @@ def plot_predictions(dataloader, model, n=5):
 
         #IOU CALCULATION
         iou = intersection_over_union(actual_box, pred_box)
-        print(f"IoU: {iou:.4f}")
+        print(f"IoU: {iou}")
 
         cv2.rectangle(image,
                       (int(actual_box[0]), int(actual_box[1])),

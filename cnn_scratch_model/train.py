@@ -12,8 +12,8 @@ import tensorboard
 device = "cuda" if torch.cuda.is_available() else "cpu"
 batch_size = 16
 learning_rate = 1e-4
-bbox_dir = "C:/Users/saidy/Desktop/Christina_Saidy_Assignment_5+6/oxford-iiit-pet/annotations/xmls"
-imag_dir = "C:/Users/saidy/Desktop/Christina_Saidy_Assignment_5+6/oxford-iiit-pet/images"
+bbox_dir = "C:/Users/saidy/Desktop/Christina_Saidy_Assigment_5/Christina_Saidy_Assignment_5+6/oxford-iiit-pet/annotations/xmls"
+imag_dir = "C:/Users/saidy/Desktop/Christina_Saidy_Assigment_5/Christina_Saidy_Assignment_5+6/oxford-iiit-pet/images"
 epochs = 35
 class_number = 37
 save_dir = "CNN_SAVED"
@@ -81,7 +81,7 @@ for epoch in range(epochs):
     avg_train_loss = running_train_loss / len(train_loader)
     train_accuracy = 100. * correct_train / total_train
 
-    print(f"Epoch {epoch+1}/{epochs}, Total Loss: {avg_train_loss:.4f}, Train Accuracy: {train_accuracy:.2f}%")
+    print(f"Epoch {epoch+1}/{epochs}, Total Loss: {avg_train_loss}, Train Accuracy: {train_accuracy}%")
     writer.add_scalar('Loss/train', avg_train_loss, epoch + 1)
     writer.add_scalar('Accuracy/train', train_accuracy, epoch + 1)
 
@@ -114,7 +114,7 @@ for epoch in range(epochs):
     avg_val_loss = running_val_loss / len(val_loader)
     val_accuracy = 100. * correct_val / total_val
 
-    print(f"Validation Loss: {avg_val_loss:.4f}, Validation Accuracy: {val_accuracy:.2f}%")
+    print(f"Validation Loss: {avg_val_loss}, Validation Accuracy: {val_accuracy}%")
     writer.add_scalar('Loss/Val', avg_val_loss, epoch + 1)
     writer.add_scalar('Accuracy/Val', val_accuracy, epoch + 1)
 

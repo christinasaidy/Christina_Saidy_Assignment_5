@@ -45,11 +45,11 @@ def plot_predictions(dataloader, model, n=5):
 
         with torch.no_grad():
             pred_class, pred_bbox = model(image_tensor)
-            pred_class = torch.argmax(pred_class, dim=1).item()
+            pred_class = torch.argmax(pred_class, dim=1).item() ######## dim =1 same as axis =1 in numpy
             pred_bbox = pred_bbox[0].cpu().tolist()
 
-        image = image_tensor[0].cpu().permute(1, 2, 0).numpy()
-        image = (image * 255).astype(np.uint8)
+        image = image_tensor[0].cpu().permute(1, 2, 0).numpy() ##  gives err without permute changes shape to cv2 friendly 
+        image = (image * 255).astype(np.uint8) ##### change normalized image and convert it to int cause floats arent cv2 friendly
         image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
 
         h, w = image.shape[:2]
