@@ -6,7 +6,7 @@ class ResNet_Model(nn.Module): ######TRANSFER LEARNING with resnet 50 as base
     def __init__(self, num_classes):
         super(ResNet_Model, self).__init__()
 
-        self.backbone = resnet50(pretrained = True)#######load old pretrained weights
+        self.backbone = resnet50(weights=ResNet50_Weights.DEFAULT)#######load old pretrained weights, pretrained = True is depricated
 
         for param in self.backbone.parameters():
             param.requires_grad = False  # freezing
