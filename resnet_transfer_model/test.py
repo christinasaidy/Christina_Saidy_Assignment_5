@@ -10,10 +10,10 @@ import numpy as np
 import os
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
-bbox_dir = "C:/Users/saidy/Desktop/Christina_Saidy_Assignment_5+6/oxford-iiit-pet/annotations/xmls"
+bbox_dir = "C:/Users/saidy/Desktop/Christina_Saidy_Assigment_5/Christina_Saidy_Assignment_5+6/oxford-iiit-pet/annotations/xmls"
 class_number = 37
-model_path = "C:/Users/saidy/Desktop/Christina_Saidy_Assignment_5+6/saved_models/resnet_model.pth"
-imag_dir = "C:/Users/saidy/Desktop/Christina_Saidy_Assignment_5+6/oxford-iiit-pet/images"
+model_path = "C:/Users/saidy/Desktop/Christina_Saidy_Assigment_5/Christina_Saidy_Assignment_5+6/saved_models/resnet_model.pth"
+imag_dir = "C:/Users/saidy/Desktop/Christina_Saidy_Assigment_5/Christina_Saidy_Assignment_5+6/oxford-iiit-pet/images"
 
 model = ResNet_Model(num_classes=class_number)
 model.load_state_dict(torch.load(model_path, map_location=device))
