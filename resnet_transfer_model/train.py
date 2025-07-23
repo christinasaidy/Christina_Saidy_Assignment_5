@@ -79,7 +79,7 @@ for epoch in range(epochs):
     avg_train_loss = running_train_loss / len(train_loader)
     train_accuracy = 100. * correct_train / total_train
 
-    print(f"Epoch [{epoch+1}] Training Loss: {avg_train_loss:.4f}, Training Accuracy: {train_accuracy:.2f}%")
+    print(f"Epoch [{epoch+1}] Training Loss: {avg_train_loss}, Training Accuracy: {train_accuracy}%")
     writer.add_scalar('Epoch/Train_Loss', avg_train_loss, epoch)
     writer.add_scalar('Epoch/Train_Accuracy', train_accuracy, epoch)
 
@@ -109,7 +109,7 @@ for epoch in range(epochs):
     avg_val_loss = running_val_loss / len(val_loader)
     val_accuracy = 100. * correct_val / total_val
 
-    print(f"Epoch [{epoch+1}] Validation Loss: {avg_val_loss:.4f}, Validation Accuracy: {val_accuracy:.2f}%")
+    print(f"Epoch [{epoch+1}] Validation Loss: {avg_val_loss}, Validation Accuracy: {val_accuracy}%")
     writer.add_scalar('Epoch/Val_Loss', avg_val_loss, epoch)
     writer.add_scalar('Epoch/Val_Accuracy', val_accuracy, epoch)
 
